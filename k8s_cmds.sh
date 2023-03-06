@@ -2,6 +2,12 @@
 
 # kubectl cmds
 
+# check request and limits for containers in pod
+kubectl get po <pod_name> -o jsonpath='{.spec.containers[*].resources}'
+
+kubectl -n <namespace> get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.limits}'
+kubectl -n <namespace> get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.requests}'
+
 # resource consumption for nodes or pods
 kubect top no --sort-by=cpu
 kubect top po --sort-by=memory
