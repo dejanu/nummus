@@ -7,7 +7,7 @@
 
 * [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) - estimate cost
 * [k8s instance calculator](https://learnk8s.io/kubernetes-instance-calculator)
-
+* [VM sizes](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable)
 
 ### Concepts
 

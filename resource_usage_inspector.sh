@@ -5,10 +5,9 @@
 # @dejanualex                                              ##
 #############################################################
 
-## set grep color to yellow or white
+## set grep color to yellow or green
 # export GREP_COLORS='ms=01;33'
-export GREP_COLORS='ms=01;37'
-
+export GREP_COLORS='ms=01;32'
 
 # Options for inspecting resource usage
 echo -e "\n Please select desired resource to inspect:\n 1. CPU[millicores] \n 2. Memory[bytes] \n\n"
@@ -24,16 +23,17 @@ else
     exit 1
 fi
 
-# ### NODE LEVEL
-# # read node name
-# echo -e "\n Available nodes are:\n $(kubectl get nodes -o=custom-columns=NODES:.metadata.name) \n"
-# echo -e "\n Please write the name of the node for which you want to know the resource status:\n"
-# read -r node
+### NODE LEVEL
+echo -e "\n Sorted NODES by "${resource}" :\n $(kubectl top node --sort-by="${resource}") \n"
 
-# # check current usage usage at the Node level and display the Pods running on the selected Node
-# kubectl top node --sort-by="${resource}" | egrep --color "${node}| "
-# echo -e "\e[0;32m Pods running on node "${node}" \e[0m"
-# kubectl get po -A --field-selector spec.nodeName="${node}"
+# get node names $(kubectl get nodes -o=custom-columns=NODES:.metadata.name)
+# highlight node in list: kubectl top node --sort-by="${resource}" | egrep --color "${node}|
+
+# check current usage at the Node level and display the Pods running on the selected Node
+echo -e "\n Please write the name of the node for which you want to know the resource status:\n"
+read -r node
+echo -e "\e[0;32m Pods running on node "${node}" \e[0m"
+kubectl get po -A --field-selector spec.nodeName="${node}"
 
 ### NAMESPACE LEVEL
 # read namespace and pod name
@@ -49,11 +49,10 @@ printf "\n \e[0;32m Most ${resource} expensive CONTAINERS in ${nspace} namespace
 kubectl top po -n "${nspace}" --containers=true --sort-by="${resource}"
 
 ### POD LEVEL
-printf "\n Please select a POD from namespace:\n $(kubectl -n "${nspace}" get po -o=custom-columns=POD:.metadata.name) \n\n"
+printf "\n Please select a POD from namespace:\n $(kubectl -n "${nspace}" get po -o=custom-columns=POD:.metadata.name) \e[0m \n\n"
 read -r ppod
 ## check Limits and Requests for Containers in Pod and current usage
-printf "........."
-printf "\e[4mContainers in POD:\e[24m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}') \n\n"
-printf "\e[4mLimits and Request per CONTAINER:\e[24m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].resources}'|jq .) \n\n"
-printf "\e[4mCurrent resource usage:\e[24m \n"
-kubectl -n "${nspace}" top po "${ppod}" --containers
+printf "\n \e[0;32m Containers in POD:\e[0m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}') \n\n"
+printf "\n \e[0;32m Limits and Request per CONTAINER:\e[0m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].resources}'|jq .) \e[0m \n\n"
+printf "\n \e[0;32m Current resource usage:\e[0m \n $(kubectl -n "${nspace}" top po "${ppod}" --containers)"
+
