@@ -23,3 +23,11 @@
 # check quota usage
 az vm list-usage --location "East US" -o table
 ```
+
+### Local development
+
+* Run kubeeye locally
+```bash
+docker build -t dejanualex/kubeyehack:1.0 .
+docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
+```
