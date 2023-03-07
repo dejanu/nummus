@@ -30,9 +30,9 @@ echo -e "\n Sorted NODES by "${resource}" :\n $(kubectl top node --sort-by="${re
 # highlight node in list: kubectl top node --sort-by="${resource}" | egrep --color "${node}|
 
 # check current usage at the Node level and display the Pods running on the selected Node
-echo -e "\n Please write the name of the node for which you want to know the resource status:\n"
+printf "\n Please write the name of the node for which you want to know the resource status:\n"
 read -r node
-echo -e "\e[0;32m Pods running on node "${node}" \e[0m"
+printf "\e[0;32m Pods running on node "${node}" \e[0m"
 kubectl get po -A --field-selector spec.nodeName="${node}"
 
 ### NAMESPACE LEVEL
