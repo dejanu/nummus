@@ -20,9 +20,12 @@ kubectl get apiservices
 # node metrics
 kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
 
+kubectl api-resources
+# understand container specs
+kubectl explain pod.spec.containers.resources
+# understand node specs
+kubectl explain node.spec
+
 # API endpoints for health checks without formatting
 kubectl get --raw '/livez?verbose'
 kubectl get --raw '/readyz?verbose'
-
-# understand container specs
-kubectl explain pod.spec.containers.resources
