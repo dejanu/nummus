@@ -1,4 +1,6 @@
 .DEFAULT_GOAL := documentation
+specs:
+	@echo "kubectl explain pod.spec.containers.resources"
 limits:
 	@echo "-o jsonpath='{.spec.containers[*].resources}'"
 	@echo "-o jsonpath='{.spec.containers[*].resources.limits}'"

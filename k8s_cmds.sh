@@ -19,3 +19,10 @@ kubectl top po <pod_name> -n <namespace_name> --containers
 kubectl get apiservices
 # node metrics
 kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
+
+# API endpoints for health checks without formatting
+kubectl get --raw '/livez?verbose'
+kubectl get --raw '/readyz?verbose'
+
+# understand container specs
+kubectl explain pod.spec.containers.resources
