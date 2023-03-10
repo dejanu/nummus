@@ -29,3 +29,6 @@ kubectl explain node.spec
 # API endpoints for health checks without formatting
 kubectl get --raw '/livez?verbose'
 kubectl get --raw '/readyz?verbose'
+
+# events at the node level
+kubectl get events --field-selector involvedObject.kind=Node -A
