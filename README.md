@@ -2,6 +2,7 @@
 **mastering currency in the cloud**
 
 * [Kubernetes capacity management](https://faun.pub/kubernetes-capacity-management-resources-and-metrics-d449d65955cb)
+* [Handy service map by Google](https://cloud.google.com/blog/topics/developers-practitioners/handy-new-google-cloud-aws-and-azure-product-map)
 
 ### Cloud pricing caluculators:
 
