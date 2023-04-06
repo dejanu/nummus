@@ -1,4 +1,6 @@
 .DEFAULT_GOAL := documentation
+autocompletion:
+	@echo "source <(kubectl completion bash)"
 specs:
 	@echo "kubectl explain pod.spec.containers.resources"
 limits:
