@@ -5,12 +5,15 @@
 
 * [Kubernetes capacity management](https://faun.pub/kubernetes-capacity-management-resources-and-metrics-d449d65955cb)
 * [Handy service map by Google](https://cloud.google.com/blog/topics/developers-practitioners/handy-new-google-cloud-aws-and-azure-product-map)
+* [K8s instance calculator](https://learnk8s.io/kubernetes-instance-calculator)
 
-### Cloud pricing caluculators:
+### Cloud pricing:
 
+## Azure
 * [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) - estimate cost
-* [k8s instance calculator](https://learnk8s.io/kubernetes-instance-calculator)
 * [VM sizes](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable)
+* [Resource reservations](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#resource-reservations)
+
 
 ### Concepts
 
