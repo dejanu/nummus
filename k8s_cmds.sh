@@ -19,8 +19,8 @@ kubectl top po <pod_name> -n <namespace_name> --containers
 kubectl get apiservices
 # node metrics
 kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
-
 kubectl api-resources
+
 # understand container specs
 kubectl explain pod.spec.containers.resources
 # understand node specs
@@ -32,3 +32,6 @@ kubectl get --raw '/readyz?verbose'
 
 # events at the node level
 kubectl get events --field-selector involvedObject.kind=Node -A
+
+# get QoS class of a pod
+kubectl get pod <pod-name> -o jsonpath='{.status.qosClass}'

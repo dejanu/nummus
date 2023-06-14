@@ -11,6 +11,7 @@
 
 ## Azure
 * [Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) - estimate cost
+* [Azure price](https://azureprice.net/)
 * [VM sizes](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable)
 * [Resource reservations](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads#resource-reservations)
 
