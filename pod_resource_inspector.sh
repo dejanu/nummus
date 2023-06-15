@@ -16,11 +16,14 @@ read -r ppod
 printf "\n \e[0;32m Limits and Requests for selected POD: \e[0m \n"
 kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].resources}' | jq .
 
-# ask user if he wants to list containers for the selected pod 
-printf "\n \e[0;32m WHY ARE WE SEEING THIS 🤔 ... \e[0m \n"
+# list containers in the selected pod
+printf "\n\t\t\t\t \e[0;32m WHY ARE WE SEEING THIS 🤔 \e[0m \n"
 read -r answer
 if [ "${answer}" == "why" ]; then
-    printf "\e[4mContainers in POD:\e[24m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}') \n\n"
+    # printf "\e[4mContainers in POD 👇 \e[24m"
+    printf "\n\t\t\t\t \e[0;32m Containers in POD 😲: \e[0m"
+    kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}'
+    printf "\n\t\t\t\t \e[0;32m ------------------- \e[0m \n\n"
 else
     printf "\n \e[0;32m Exiting... \e[0m \n"
     exit 1

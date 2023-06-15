@@ -32,7 +32,7 @@ echo -e "\n Sorted NODES by "${resource}" :\n $(kubectl top node --sort-by="${re
 # check current usage at the Node level and display the Pods running on the selected Node
 printf "\n Please write the name of the node for which you want to know the resource status:\n"
 read -r node
-printf "\e[0;32m Pods running on node "${node}" \e[0m"
+printf "\e[0;32m Pods running on node "${node}" \e[0m \n"
 kubectl get po -A --field-selector spec.nodeName="${node}"
 
 ### NAMESPACE LEVEL
@@ -52,7 +52,10 @@ kubectl top po -n "${nspace}" --containers=true --sort-by="${resource}"
 printf "\n Please select a POD from namespace:\n $(kubectl -n "${nspace}" get po -o=custom-columns=POD:.metadata.name) \e[0m \n\n"
 read -r ppod
 ## check Limits and Requests for Containers in Pod and current usage
-printf "\n \e[0;32m Containers in POD:\e[0m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}') \n\n"
-printf "\n \e[0;32m Limits and Request per CONTAINER:\e[0m $(kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].resources}'|jq .) \e[0m \n\n"
-printf "\n \e[0;32m Current resource usage:\e[0m \n $(kubectl -n "${nspace}" top po "${ppod}" --containers)"
+printf "\n \e[0;32m Containers in POD:\e[0m"
+kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].name}'
+printf "\n \e[0;32m Limits and Request per CONTAINER:\e[0m \n"
+kubectl -n "${nspace}" get po "${ppod}" -o jsonpath='{.spec.containers[*].resources}'|jq .
+printf "\n \e[0;32m Current resource usage:\e[0m \n"
+kubectl -n "${nspace}" top po "${ppod}" --containers
 
