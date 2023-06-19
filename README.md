@@ -5,6 +5,7 @@
 
 * [Kubernetes capacity management](https://faun.pub/kubernetes-capacity-management-resources-and-metrics-d449d65955cb)
 * [Handy service map by Google](https://cloud.google.com/blog/topics/developers-practitioners/handy-new-google-cloud-aws-and-azure-product-map)
+* [Azure infra globe](https://datacenters.microsoft.com/globe/explore)
 * [K8s instance calculator](https://learnk8s.io/kubernetes-instance-calculator)
 
 ### Cloud pricing:
@@ -23,6 +24,10 @@
 (Threads x Cores) x Physical CPU = Number vCPU
 ```
 
+### QoS classes POD:
+
+* Kubernetes uses QoS classification to influence how different pods are handled, and assigns every Pod a QoS class based on the resource requests and limits of its component Containers
+
 #### Azure
 * ACU (Azure Compute Unit) - provides a way of comparing compute (CPU) performance across Azure SKUs
 * Quotas - Microsoft Azure limits e.g  vCPU quotas
@@ -38,3 +43,4 @@ az vm list-usage --location "East US" -o table
 docker build -t dejanualex/kubeyehack:1.0 .
 docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
 ```
+

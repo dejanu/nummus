@@ -24,3 +24,4 @@ printf "\n   QoS  Guaranteed:\e[0;32m Every Container in the Pod must have a lim
 printf "\n   QoS  Burstable:\e[0;32m  At least one Container in the Pod has a Memory or CPU request or limit. \e[0m \n"
 printf "\n   QoS 🔥BestEffort:\e[0;32m Containers in the Pod must not have any Memory or CPU limits or requests \e[0m \n"
 echo "---------------------------------------------------------------------------------------------------------------------"
+printf "\n ⚠️ The kubelet prefers to evict BestEffort pods if the node comes under resource pressure. \n"
