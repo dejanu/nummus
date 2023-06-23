@@ -44,3 +44,7 @@ docker build -t dejanualex/kubeyehack:1.0 .
 docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
 ```
 
+### AKS stuff
+
+* [AKS cluster autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler?WT.mc_id=Portal-Microsoft_Azure_Expert) + [AKS node pool](https://learn.microsoft.com/en-us/azure/aks/spot-node-pool)
+* [Optimizing costs on AKS](https://learn.microsoft.com/en-us/training/modules/aks-optimize-compute-costs/)
