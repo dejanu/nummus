@@ -5,6 +5,9 @@ kubectl get po <pod_name> -o jsonpath='{.spec.containers[*].resources}'
 kubectl -n <namespace> get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.limits}'
 kubectl -n <namespace> get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.requests}'
 
+# for ephemeral containers check
+kubectl -n default get po nginx -o jsonpath='{.spec.shareProcessNamespace}'
+
 # resource consumption for nodes or pods
 kubect top no --sort-by=cpu
 kubect top po --sort-by=memory
