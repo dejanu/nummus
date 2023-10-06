@@ -12,6 +12,10 @@ kubectl -n default get po nginx -o jsonpath='{.spec.shareProcessNamespace}'
 kubect top no --sort-by=cpu
 kubect top po --sort-by=memory
 
+# error: Metrics API not available. top commands needs metrics server API
+# node metrics
+kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
+
 # resource consumption for namespaces,pods,containers
 kubectl top node <node_name>
 kubectl get po -A --field-selector spec.nodeName=<node_name>
@@ -20,8 +24,6 @@ kubectl top po <pod_name> -n <namespace_name> --containers
 
 # K8s API services
 kubectl get apiservices
-# node metrics
-kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
 kubectl api-resources
 
 # understand container specs

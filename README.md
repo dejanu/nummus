@@ -44,6 +44,14 @@ docker build -t dejanualex/kubeyehack:1.0 .
 docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
 ```
 
+* Enable API server for k8s docker local setup by using [metrics-server](https://github.com/kubernetes-sigs/metrics-server):
+```bash
+# download components
+wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.4/components.yaml
+# add - --kubelet-insecure-tls in components.yaml (check line 139)
+kubectl apply -f components.yaml
+```
+
 ### AKS stuff
 
 * [AKS cluster autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler?WT.mc_id=Portal-Microsoft_Azure_Expert) + [AKS node pool](https://learn.microsoft.com/en-us/azure/aks/spot-node-pool)
