@@ -28,7 +28,7 @@
 
 * Kubernetes uses QoS classification to influence how different pods are handled, and assigns every Pod a QoS class based on the resource requests and limits of its component Containers
 
-#### Azure
+### Azure
 * ACU (Azure Compute Unit) - provides a way of comparing compute (CPU) performance across Azure SKUs
 * Quotas - Microsoft Azure limits e.g  vCPU quotas
 ```bash
@@ -44,13 +44,46 @@ docker build -t dejanualex/kubeyehack:1.0 .
 docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
 ```
 
+### Autoscaling
+
+## Metrics Server and VPA
+
 * Enable API server for k8s docker local setup by using [metrics-server](https://github.com/kubernetes-sigs/metrics-server):
 ```bash
 # download components
 wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.4/components.yaml
 # add - --kubelet-insecure-tls in components.yaml (check line 139)
-kubectl apply -f components.yaml
+kubectl apply -f autoscalers/components.yaml
+
+# check if metrics server is enabled
+kubectl get apiservices | grep metrics.k8s.io
+kubectl get --raw /apis/metrics.k8s.io/v1beta1 | jq
+
+# kubectl top calls metrics api behind the scenes
+kubectl top nodes
+kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes" | jq .items[].usage
+
+kubectl top pods
+kubectl get --raw /apis/metrics.k8s.io/v1beta1/pods | jq .items[].containers[].usage
 ```
+
+* VPA (Vertical Pod Autoscaler)
+
+```bash
+# HELM installation
+helm repo add fairwinds-stable https://charts.fairwinds.com/stable
+
+# helm install my-vpa fairwinds-stable/vpa --version 3.0.2 
+helm fetch fairwinds-stable/vpa --version 3.0.2 && tar -xzvf vpa-3.0.2.tgz
+helm install my-vpa ./vpa -n kube-system
+
+# check if VPA is installed: should see recommender, updater and admission controller
+kubectl get pods -n kube-system | grep vpa
+
+# check for VPA CRDs: verticalpodautoscalers,verticalpodautoscalercheckpoints
+kubectl get crd -A | grep -i vert
+```
+--- 
 
 ### AKS stuff
 
