@@ -48,6 +48,8 @@ docker run -v ~/.kube/:/tmp dejanualex/kubeyehack:1.0
 
 ## Metrics Server and VPA
 
+* Metrics Server collects resource metrics from Kubelets and exposes them in Kubernetes apiserver through Metrics API for use by HPA and VPA.
+
 * Enable API server for k8s docker local setup by using [metrics-server](https://github.com/kubernetes-sigs/metrics-server):
 ```bash
 # download components
