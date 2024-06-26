@@ -14,12 +14,9 @@ kubectl explain pod.spec.containers.resources
 # understand node specs
 kubectl explain node.spec
 
-# check request and limits for containers in pod
-kubectl get po <pod_name> -o jsonpath='{.spec.containers[*].resources}'
-kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.limits}'
-kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.requests}'
-# get QoS class of a pod
-kubectl get pod <pod-name> -o jsonpath='{.status.qosClass}'
+# plugin usage
+kubectl podresourceinspector <namespace>
+kubectl qos <namespace>
 ```
 ### Cloud pricing:
 
@@ -40,6 +37,15 @@ kubectl get pod <pod-name> -o jsonpath='{.status.qosClass}'
 ### QoS classes POD:
 
 * Kubernetes uses QoS classification to influence how different pods are handled, and assigns every Pod a QoS class based on the resource requests and limits of its component Containers
+```bash
+# get QoS class of a pod
+kubectl get pod <pod-name> -o jsonpath='{.status.qosClass}'
+
+# check request and limits for containers in pod
+kubectl get po <pod_name> -o jsonpath='{.spec.containers[*].resources}'
+kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.limits}'
+kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.requests}'
+```
 
 ### Azure
 * ACU (Azure Compute Unit) - provides a way of comparing compute (CPU) performance across Azure SKUs
@@ -98,9 +104,6 @@ kubectl get pods -n kube-system | grep vpa
 # check for VPA CRDs: verticalpodautoscalers,verticalpodautoscalercheckpoints
 kubectl get crd -A | grep -i vert
 
-# plugin usage
-kubectl podresourceinspector <namespace>
-kubectl qos <namespace>
 ```
 --- 
 
