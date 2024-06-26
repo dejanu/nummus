@@ -116,3 +116,14 @@ kubectl get crd -A | grep -i vert
     * Optimize costs on AKS by using zero-scaled node pools.
     * Optimize costs on AKS by using autoscaled spot node pools.
     * Manage costs with Azure Policy on AKS.
+
+### Demo
+
+```bash
+
+# create demo ns
+kubectl create ns demo
+
+# create resources
+kubectl apply -f qos_demo
+```
