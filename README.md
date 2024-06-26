@@ -13,10 +13,6 @@
 kubectl explain pod.spec.containers.resources
 # understand node specs
 kubectl explain node.spec
-
-# plugin usage
-kubectl podresourceinspector <namespace>
-kubectl qos <namespace>
 ```
 ### Cloud pricing:
 
@@ -126,4 +122,9 @@ kubectl create ns demo
 
 # create resources
 kubectl apply -f qos_demo
+
+
+# plugin usage for demo namespace
+kubectl podresourceinspector <namespace>
+kubectl qos <namespace>
 ```
