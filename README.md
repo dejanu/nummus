@@ -8,6 +8,19 @@
 * [Azure infra globe](https://datacenters.microsoft.com/globe/explore)
 * [K8s instance calculator](https://learnk8s.io/kubernetes-instance-calculator)
 
+```bash
+# understand container specs
+kubectl explain pod.spec.containers.resources
+# understand node specs
+kubectl explain node.spec
+
+# check request and limits for containers in pod
+kubectl get po <pod_name> -o jsonpath='{.spec.containers[*].resources}'
+kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.limits}'
+kubectl get pod <pod_name> -o jsonpath='{.spec.containers[*].resources.requests}'
+# get QoS class of a pod
+kubectl get pod <pod-name> -o jsonpath='{.status.qosClass}'
+```
 ### Cloud pricing:
 
 ## Azure
@@ -84,6 +97,10 @@ kubectl get pods -n kube-system | grep vpa
 
 # check for VPA CRDs: verticalpodautoscalers,verticalpodautoscalercheckpoints
 kubectl get crd -A | grep -i vert
+
+# plugin usage
+kubectl podresourceinspector <namespace>
+kubectl qos <namespace>
 ```
 --- 
 
