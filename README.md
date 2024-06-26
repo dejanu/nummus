@@ -91,3 +91,8 @@ kubectl get crd -A | grep -i vert
 
 * [AKS cluster autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler?WT.mc_id=Portal-Microsoft_Azure_Expert) + [AKS node pool](https://learn.microsoft.com/en-us/azure/aks/spot-node-pool)
 * [Optimizing costs on AKS](https://learn.microsoft.com/en-us/training/modules/aks-optimize-compute-costs/)
+
+* TL;DR Quickly optimize costs by:
+    * Optimize costs on AKS by using zero-scaled node pools.
+    * Optimize costs on AKS by using autoscaled spot node pools.
+    * Manage costs with Azure Policy on AKS.
